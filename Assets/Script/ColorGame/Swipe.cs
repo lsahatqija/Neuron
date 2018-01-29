@@ -8,7 +8,7 @@ public class Swipe : MonoBehaviour {
 
     private bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     private bool isDragging;
-    private const float deadzoneSensitivity = 75.0f;
+    private const float deadzoneSensitivity = 50.0f;
     private Vector2 startTouch, swipeDelta;
 
     private void Awake()

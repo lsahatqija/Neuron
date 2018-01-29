@@ -220,7 +220,7 @@ public class SpaceshipMotor : MonoBehaviour {
                 colorText.color = new Color(0.33f, 0.24f, 0);
                 break;
             case 10:
-                mat.color = new Color(0.46f, 0.0f, 0.8f);      //pruple
+                mat.color = new Color(0.46f, 0.0f, 0.8f);      //purple
                 colorText.text = "Vjollcë";
                 colorText.color = new Color(0.46f, 0.0f, 0.8f);
                 break;

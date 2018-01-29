@@ -16,8 +16,13 @@ public class MenuManager : MonoBehaviour {
         scoreText.text = "Highscore: " + score.ToString();
     }
 
-    public void ToGame()
+    public void ToColorGame()
     {
         SceneManager.LoadScene("ColorGame");
+    }
+
+    public void ToNumberGame()
+    {
+        SceneManager.LoadScene("NumberGame");
     }
 }

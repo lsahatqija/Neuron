@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class DeathMenu : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class DeathMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameObject.SetActive(false);
+
+        //Ads
+        //Advertisement.Initialize();
 	}
 	
 	// Update is called once per frame
@@ -43,4 +47,6 @@ public class DeathMenu : MonoBehaviour {
     {
         SceneManager.LoadScene("Menu");
     }
+
+
 }
