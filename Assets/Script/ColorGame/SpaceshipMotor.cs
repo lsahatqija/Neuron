@@ -49,7 +49,6 @@ public class SpaceshipMotor : MonoBehaviour {
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        //ColorGateSpawner.Instance.SpawnCubes(0);
         ChangeSpaceShipColor();
         source.Play();
         pauseButton.SetActive(true);
