@@ -192,6 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreSound: {fileID: 8300000, guid: 395f256a1227c4844a3ccbdaa78b8d11, type: 3}
   livesLostSound: {fileID: 8300000, guid: 877841330d3638242be9d2b881d4ca45, type: 3}
+  deathMenu: {fileID: 0}
   colorGate: {fileID: 114997390735551966, guid: 9f306764da2e02f49aee92d0c4764508,
     type: 2}
   livesText: {fileID: 0}

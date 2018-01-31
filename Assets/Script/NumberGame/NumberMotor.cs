@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 public class NumberMotor : MonoBehaviour {
 
     public DeathMenu deathMenu;
+    public static AdManager AdInstance { set; get; }
+    public GameObject pauseButton;
 
     private int[] selectedNumbers = new int[9];
     public NumberButtonMotor[] nbms = new NumberButtonMotor[9];
@@ -29,28 +31,34 @@ public class NumberMotor : MonoBehaviour {
 
     private int roundsPlayed = 0;
     private int maxRounds = 15;
+    private bool isPaused = false;
 
 	// Use this for initialization
 	void Start () {
         ChooseResult();
+        pauseButton.SetActive(true);
     }
 	
 	// Update is called once per frame
 	void Update () {
         scoreText.text = "Score: " + score.ToString();
 
-        if (roundsPlayed < maxRounds)
+        if (!isPaused)
         {
-
-            timeLeft -= Time.deltaTime;
-            if (timeLeft < 0.0f)
+            if ((roundsPlayed < maxRounds))
             {
-                ChooseResult();
-                roundsPlayed++;
+
+                timeLeft -= Time.deltaTime;
+                if (timeLeft < 0.0f)
+                {
+                    ChooseResult();
+                    roundsPlayed++;
+                }
             }
-        } else
-        {
-            EndGame();
+            else
+            {
+                EndGame();
+            }
         }
         timer.text = ((int)timeLeft).ToString() + "s";
     }
@@ -64,7 +72,7 @@ public class NumberMotor : MonoBehaviour {
         if (operand == 1)
         {
             operandText.text = "+";
-            desiredResult = Random.Range(10, 45);
+            desiredResult = Random.Range(10, 32);
         } else if (operand == 2)
         {
             operandText.text = "*";
@@ -139,8 +147,23 @@ public class NumberMotor : MonoBehaviour {
         timeLeft = maxTimer;
     }
 
+    public void PauseGame()
+    {
+        if (!isPaused)
+        {
+            deathMenu.ToggleEndMenu(score);
+            isPaused = true;
+        } else
+        {
+            deathMenu.UnToggleEndMenu();
+            isPaused = false;
+        }
+    }
+
     private void EndGame()
     {
+        pauseButton.SetActive(false);
+        AdManager.AdInstance.ShowAd();
         deathMenu.ToggleEndMenu(score);
     }
 

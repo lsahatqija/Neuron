@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class SpaceshipMotor : MonoBehaviour {
 
     public static ColorGateSpawner Instance { set; get; }
+    public static AdManager AdInstance { set; get; }
+    public GameObject pauseButton;
+    public GameObject tutorial;
 
     public AudioClip scoreSound;
     public AudioClip livesLostSound;
@@ -25,6 +28,7 @@ public class SpaceshipMotor : MonoBehaviour {
     public Text scoreText;
     public Text colorText;
     int[] colorTable = new int[3];
+    private bool isPaused = true;
 
     // Movement
     private float speed = 4.0f;
@@ -48,11 +52,13 @@ public class SpaceshipMotor : MonoBehaviour {
         //ColorGateSpawner.Instance.SpawnCubes(0);
         ChangeSpaceShipColor();
         source.Play();
+        pauseButton.SetActive(true);
+        tutorial.SetActive(true);
     }
 
     private void Update()
     {
-        if (isAlive)
+        if (isAlive && !isPaused)
         {
             // Gather the input on which lane we should be
             if (Swipe.Instance.SwipeLeft)
@@ -232,6 +238,28 @@ public class SpaceshipMotor : MonoBehaviour {
     private void EndGame()
     {
         isAlive = false;
+        pauseButton.SetActive(false);
+        AdManager.AdInstance.ShowAd();
         deathMenu.ToggleEndMenu(score);
+    }
+
+    public void PauseGame()
+    {
+        if (!isPaused)
+        {
+            deathMenu.ToggleEndMenu(score);
+            isPaused = true;
+        }
+        else
+        {
+            deathMenu.UnToggleEndMenu();
+            isPaused = false;
+        }
+    }
+
+    public void UnToggleTutorial()
+    {
+        tutorial.SetActive(false);
+        isPaused = false;
     }
 }
